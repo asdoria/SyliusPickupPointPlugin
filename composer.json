@@ -9,7 +9,7 @@
             "email": "philippe.vesin@asdoria.com"
         }
     ],
-    "license": "PROPRIETARY",
+    "license": "MIT",
     "require": {
         "php": "^8.0",
         "ext-soap": "*",
