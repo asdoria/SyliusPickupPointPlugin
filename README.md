@@ -198,14 +198,6 @@ bin/console bazinga:js-translation:dump public/js --format=json
 bin/console sylius:install:assets
 ```
 
-### Add stylesheets and javascripts event in Twig files:
-
-```html
-{{ sylius_template_event('asdoria.pickup.point.stylesheets') }}
-...
-{{ sylius_template_event('asdoria.pickup.point.javascripts') }}
-```
-
 ## Front
 
 ### 0/ Admin
@@ -271,9 +263,14 @@ To: [shop_dir] templates/bundles/SyliusAdminBundle/*
 ```
 
 4) In `templates/bundles/SyliusShopBundle/Checkout/selectShipping.html.twig`,
-   call `pickup-point` script after other scripts.
+   call javascripts and stylesheets events, and `pickup-point` script after other scripts.
 
 ```html
+{% block stylesheets %}
+    {{ parent() }}
+    {{ sylius_template_event('asdoria.pickup.point.stylesheets') }}
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     {{ sylius_template_event('asdoria.pickup.point.javascripts') }}
@@ -290,7 +287,7 @@ export const EVENT_HIDE_PICKUP_POINT           = 'EVENT_HIDE_PICKUP_POINT'
 export const EVENT_UPDATE_CURRENT_PICKUP_POINT = 'EVENT_UPDATE_CURRENT_PICKUP_POINT'
 ```
 
-6) Create the file `assets/shop/js/pickup-point.js`
+6) Create the file `assets/shop/js/app/pickup-point.js`
 
 ```js
 import {
