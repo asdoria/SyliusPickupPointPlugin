@@ -1,0 +1,24 @@
+/*
+ * [ modules / point selected ]
+ */
+
+// -----------------------------------------------------------------------------
+
+.pkp-point-selected {
+    border-top: 1px solid $gray-darker;
+    padding: 16px 0;
+}
+
+.pkp-point-selected__label {
+    font-weight: 700;
+}
+
+.pkp-point-selected__button {
+    padding: 4px 8px;
+    border: 1px solid $gray-dark;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}

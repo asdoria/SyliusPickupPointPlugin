@@ -1,0 +1,12 @@
+{
+  "entrypoints": {
+    "asdoria-pickup-point": {
+      "css": [
+        "/bundles/asdoriasyliuspickuppointplugin/css/asdoria-pickup-point.min.css"
+      ],
+      "js": [
+        "/bundles/asdoriasyliuspickuppointplugin/js/asdoria-pickup-point.min.js"
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+/*
+ * [ settings / path ]
+ */
+
+// -----------------------------------------------------------------------------
+
+$fonts-path: '../../fonts/';
+
+@function fontPkp($file) {
+    @return url($fonts-path + $file);
+}

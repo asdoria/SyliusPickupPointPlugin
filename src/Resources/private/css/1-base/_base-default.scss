@@ -1,0 +1,42 @@
+/*
+ * [ base / default ]
+ */
+
+// -----------------------------------------------------------------------------
+
+.pkp-app {
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(120, 120, 120, 0.5);
+    padding: 8px;
+}
+
+.pkp-top-bar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.pkp-map {
+    position: relative;
+    overflow: hidden;
+}
+
+.pkp-map-container {
+    z-index: 1;
+}
+
+.pkp-app-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray-light;
+}
+
+.pkp-app-error__button {
+    border: 1px solid $gray-dark;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}

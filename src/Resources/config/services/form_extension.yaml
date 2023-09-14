@@ -1,0 +1,6 @@
+services:
+  Asdoria\SyliusPickupPointPlugin\Form\Extension\PickupPointIdChoiceTypeExtension:
+    arguments:
+      - '@router.default'
+    tags:
+      - { name: form.type_extension, extended_type: Setono\SyliusPickupPointPlugin\Form\Type\PickupPointIdChoiceType}

@@ -1,0 +1,27 @@
+/*
+ * [ components / button ]
+ */
+
+// -----------------------------------------------------------------------------
+
+.pkp-button-toggle-modal {
+    transition: all 0.25s ease;
+    background: $gray-light;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: 1rem;
+
+    &:hover {
+        background: $gray-base;
+    }
+}
+
+.pkp-button-toggle-modal__icon {
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+}

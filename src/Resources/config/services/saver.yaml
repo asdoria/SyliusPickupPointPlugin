@@ -1,0 +1,7 @@
+services:
+  asdoria_sylius_pickup_point_plugin.customer_order_addresses_saver:
+    class: Asdoria\SyliusPickupPointPlugin\Saver\CustomerOrderAddressesSaver
+    public: true
+    decorates: 'sylius.customer_order_addresses_saver'
+    arguments:
+      - "@sylius.customer_unique_address_adder"

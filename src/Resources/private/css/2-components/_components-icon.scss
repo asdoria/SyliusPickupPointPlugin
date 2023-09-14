@@ -1,0 +1,29 @@
+/*
+ * [ components / icon ]
+ */
+
+// -----------------------------------------------------------------------------
+
+[class*="pkp-icon-"], [class^="pkp-icon-"] {
+    font-family: 'pkp-icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$icons: (
+        minus: 'e900',
+        plus: 'e901',
+        search: 'e902',
+);
+
+@each $name, $code in $icons {
+    .pkp-icon-#{$name}:before {
+        content: str-unicode($code);
+    }
+}

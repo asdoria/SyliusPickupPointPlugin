@@ -1,0 +1,143 @@
+/*
+ * [ animations / Animation-translateX-opacity ]
+ */
+
+// -----------------------------------------------------------------------------
+
+
+// 1. Animation-translateX-opacity
+// --------------------------------------------------
+.Animation-translateX-opacity-enter, .Animation-translateX-opacity-appear {
+    opacity: 0;
+    transform:translateX(-100%);
+}
+.Animation-translateX-opacity-enter-active, .Animation-translateX-opacity-appear-active {
+    opacity: 1;
+    transform:translateX(0);
+    transition: opacity 300ms, transform 300ms;
+}
+.Animation-translateX-opacity-exit {
+    opacity: 1;
+    transform:translateX(0);
+}
+.Animation-translateX-opacity-exit-active {
+    opacity: 0;
+    transform:translateX(-100%);
+    transition: opacity 300ms, transform 300ms;
+}
+
+
+// 2.0 Animation-translateX
+// --------------------------------------------------
+.Animation-translateX-enter, .Animation-translateX-appear {
+    transform:translateX(-100%);
+}
+.Animation-translateX-enter-active, .Animation-translateX-appear-active {
+    transform:translateX(0);
+    transition: transform 300ms;
+}
+.Animation-translateX-exit {
+    transform:translateX(0);
+}
+.Animation-translateX-exit-active {
+    transform:translateX(-100%);
+    transition: transform 300ms;
+}
+
+
+// 2.1 Animation-translateX-speed
+// --------------------------------------------------
+.Animation-translateX-speed-enter, .Animation-translateX-speed-appear {
+    transform:translateX(100%);
+}
+.Animation-translateX-speed-enter-active, .Animation-translateX-speed-appear-active {
+    transform:translateX(0);
+    transition: transform 150ms;
+}
+.Animation-translateX-speed-exit {
+    transform:translateX(0);
+}
+.Animation-translateX-speed-exit-active {
+    transform:translateX(100%);
+    transition: transform 150ms;
+}
+
+
+// 3. Animation-opacity
+// --------------------------------------------------
+.Animation-opacity-enter, .Animation-opacity-appear {
+    opacity: 0;
+}
+.Animation-opacity-enter-active, .Animation-opacity-appear-active {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+.Animation-opacity-exit {
+    opacity: 1;
+}
+.Animation-opacity-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+
+// 3. Animation-scale-opacity
+// --------------------------------------------------
+.Animation-scale-opacity-enter, .Animation-scale-opacity-appear {
+    opacity: 0;
+    transform:scale(0);
+}
+.Animation-scale-opacity-enter-active, .Animation-scale-opacity-appear-active {
+    opacity: 1;
+    transform:scale(1);
+    transition: all 300ms;
+}
+.Animation-scale-opacity-exit {
+    opacity: 1;
+    transform:scale(1);
+}
+.Animation-scale-opacity-exit-active {
+    opacity: 0;
+    transform:scale(0);
+    transition: all 300ms;
+}
+
+
+// 4. Animation-list-item
+// --------------------------------------------------
+.Animation-list-item-enter, .Animation-list-item-appear {
+    transform: scale(0);
+}
+.Animation-list-item-enter-active, .Animation-list-item-appear-active {
+    transform: scale(1);
+    transition: transform 300ms;
+}
+.Animation-list-item-exit {
+    transform: scale(1);
+}
+.Animation-list-item-exit-active {
+    transform: scale(0);
+    transition: transform 300ms;
+}
+
+
+// 5. Animation-translateY-opacity
+// --------------------------------------------------
+.Animation-translateY-opacity-enter, .Animation-translateY-opacity-appear {
+    opacity: 0;
+    transform:translateY(15px);
+}
+.Animation-translateY-opacity-enter-active, .Animation-translateY-opacity-appear-active {
+    opacity: 1;
+    transform:translateY(0);
+    transition: opacity 150ms, transform 150ms;
+}
+.Animation-translateY-opacity-exit {
+    opacity: 1;
+    transform:translateY(0);
+}
+.Animation-translateY-opacity-exit-active {
+    opacity: 0;
+    transform:translateY(15px);
+    transition: opacity 300ms, transform 300ms;
+}

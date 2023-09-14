@@ -1,0 +1,4 @@
+Sylius\Component\Shipping\Model\Shipment:
+  constraints:
+    - Asdoria\SyliusPickupPointPlugin\Validator\Constraints\CheckPickupPointSelected:
+        groups: ['checkout_select_shipping']

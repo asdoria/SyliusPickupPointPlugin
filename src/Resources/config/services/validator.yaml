@@ -1,0 +1,5 @@
+services:
+    asdoria_sylius_pickup_point_plugin.validator.check_pickup_point_selected:
+        class: Asdoria\SyliusPickupPointPlugin\Validator\Constraints\CheckPickupPointSelectedValidator
+        tags:
+          - { name: validator.constraint_validator, alias: asdoria_sylius_pickup_point_check_pickup_point_selected }

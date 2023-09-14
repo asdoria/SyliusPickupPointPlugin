@@ -1,0 +1,6 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <mapped-superclass name="Asdoria\SyliusPickupPointPlugin\Entity\PickupPoint"
+                       table="setono_sylius_pickup_point__pickup_point">
+        <field name="opening" type="json"/>
+    </mapped-superclass>
+</doctrine-mapping>

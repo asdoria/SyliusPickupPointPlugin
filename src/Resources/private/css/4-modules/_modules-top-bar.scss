@@ -1,0 +1,29 @@
+/*
+ * [ modules / top bar ]
+ */
+
+// -----------------------------------------------------------------------------
+
+.pkp-mobile-top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid $gray-base;
+    border-top: 1px solid $gray-base;
+}
+
+.pkp-mobile-top-bar__item {
+    transition: all 0.24s ease;
+    cursor: pointer;
+    color: $gray-darker;
+    flex: 0 0 50%;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 4px;
+}
+
+.pkp-mobile-top-bar__item--active {
+    color: $gray-darkest;
+    box-shadow: inset 0px -2px 0px 0px $primary;
+}

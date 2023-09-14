@@ -1,0 +1,13 @@
+/*
+ * [ settings / icon ]
+ */
+
+// -----------------------------------------------------------------------------
+
+@function str-unicode($str) {
+    @return unquote("\"") + unquote(str-insert($str, "\\", 1)) + unquote("\"")
+}
+
+@function unicode($icon) {
+    @return str-unicode(quote(map-get($icons, $icon)));
+}

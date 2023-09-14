@@ -1,0 +1,38 @@
+{
+    "name": "sylius-pickup-point-plugin",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "encore.dev": "encore dev",
+        "encore.prod": "encore production",
+        "encore.watch": "encore dev --watch"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@babel/preset-react": "^7.22.5",
+        "@reduxjs/toolkit": "^1.8.1",
+        "axios": "^1.4.0",
+        "bazinga-translator": "^5.0.0",
+        "intl-messageformat": "^10.1.1",
+        "leaflet": "^1.9.4",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-leaflet": "^4.2.1",
+        "react-redux": "^8.0.1",
+        "react-router-dom": "^6.3.0",
+        "react-scripts": "5.0.1",
+        "react-transition-group": "^4.4.2"
+    },
+    "devDependencies": {
+        "@babel/preset-env": "^7.20.2",
+        "@babel/runtime": "^7.20.13",
+        "@babel/runtime-corejs2": "^7.20.13",
+        "@symfony/webpack-encore": "^4.2.0",
+        "postcss": "^8.4.21",
+        "postcss-loader": "^7.0.2",
+        "sass": "^1.58.0",
+        "sass-loader": "^13.2.0"
+    }
+}

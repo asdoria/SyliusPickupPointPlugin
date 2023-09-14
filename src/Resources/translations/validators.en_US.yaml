@@ -1,0 +1,4 @@
+asdoria_pickup_point:
+  shipment:
+    pickup_point:
+      not_valid: The selected relay point is invalid

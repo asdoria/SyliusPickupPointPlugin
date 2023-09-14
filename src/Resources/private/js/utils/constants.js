@@ -1,0 +1,8 @@
+export const STATUS_LOADING   = 'loading'
+export const STATUS_SUCCEEDED = 'succeeded'
+export const STATUS_FAILED    = 'failed'
+
+export const EVENT_INSTANCE_PICKUP_POINT       = 'EVENT_INSTANCE_PICKUP_POINT'
+export const EVENT_SET_PICKUP_POINT            = 'EVENT_SET_PICKUP_POINT'
+export const EVENT_HIDE_PICKUP_POINT           = 'EVENT_HIDE_PICKUP_POINT'
+export const EVENT_UPDATE_CURRENT_PICKUP_POINT = 'EVENT_UPDATE_CURRENT_PICKUP_POINT'

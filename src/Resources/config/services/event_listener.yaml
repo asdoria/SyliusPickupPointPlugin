@@ -1,0 +1,19 @@
+services:
+  asdoria_sylius_pickup_point_plugin.order.initialize_complete:
+    class: Asdoria\SyliusPickupPointPlugin\EventListener\OrderInitializeCompleteListener
+    arguments:
+      - "@setono_sylius_pickup_point.form.type.data_transformer.pickup_point_to_identifier"
+    tags:
+      - { name: kernel.event_listener, event: sylius.order.initialize_complete, method: updateShippingAddress }
+
+  asdoria_sylius_pickup_point_plugin.order.pre_complete:
+    class: Asdoria\SyliusPickupPointPlugin\EventListener\OrderPreCompleteListener
+    arguments:
+      - "@setono_sylius_pickup_point.form.type.data_transformer.pickup_point_to_identifier"
+    calls:
+      - [ 'setAddressFactory', ['@sylius.factory.address']]
+    tags:
+      - { name: kernel.event_listener, event: sylius.order.pre_complete, method: addShippingAddress }
+
+  setono_sylius_pickup_point.block_event_listener.javascript:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener

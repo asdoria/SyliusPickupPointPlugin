@@ -1,0 +1,26 @@
+Asdoria\SyliusPickupPointPlugin\Entity\PickupPoint:
+    exclusion_policy: ALL
+    xml_root_name: setono_sylius_pickup_point
+    properties:
+        name:
+            type: string
+            groups: [Detailed, Autocomplete]
+        latitude:
+            type: string
+            groups: [Detailed, Autocomplete]
+        longitude:
+            type: string
+            groups: [Detailed, Autocomplete]
+    virtual_properties:
+        getCode:
+            serialized_name: code
+            type: string
+            groups: [Detailed, Autocomplete]
+        getOpening:
+            serialized_name: opening
+            type: array
+            groups: [Detailed, Autocomplete]
+        getFullAddress:
+            serialized_name: full_address
+            type: string
+            groups: [Detailed, Autocomplete]

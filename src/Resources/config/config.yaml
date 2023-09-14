@@ -1,0 +1,18 @@
+sylius_ui:
+    events:
+        asdoria.pickup.point.javascripts:
+            blocks:
+                asdoria_pickup_point_javascripts:
+                    template: "@AsdoriaSyliusPickupPointPlugin/Shop/_javascripts.html.twig"
+                    priority: 10
+        asdoria.pickup.point.stylesheets:
+            blocks:
+                asdoria_pickup_point_stylesheets:
+                    template: "@AsdoriaSyliusPickupPointPlugin/Shop/_stylesheets.html.twig"
+                    priority: 10
+jms_serializer:
+    metadata:
+        directories:
+            asdoria-sylius-pickup-point:
+                namespace_prefix: "Asdoria\\SyliusPickupPointPlugin\\Entity"
+                path: "@AsdoriaSyliusPickupPointPlugin/Resources/config/serializer"

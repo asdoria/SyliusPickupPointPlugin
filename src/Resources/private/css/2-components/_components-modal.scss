@@ -1,0 +1,69 @@
+/*
+ * [ components / modal ]
+ */
+
+// -----------------------------------------------------------------------------
+
+.pkp-modal {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background: white;
+    bottom: 0;
+    width: 280px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+    }
+}
+
+.pkp-modal-points {
+    flex: 1 1 0%;
+    overflow-y: auto;
+    margin-top: 0.5rem;
+}
+
+.pkp-modal-point {
+    padding: 16px 4px;
+    border-bottom: 1px solid $gray-base;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow:1px 1px 5px rgba(122, 122, 122, 0.5);
+    }
+
+    &--active {
+        background: $gray-light;
+    }
+
+    @media screen and (max-width: 1024px) {
+        padding: 8px 4px;
+    }
+}
+
+.pkp-modal-point__opening-list {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.pkp-modal-point__opening-item {
+    font-size: 0.75rem;
+}
+
+.pkp-modal-point__wrapper-button {
+    display: flex;
+    justify-content: end;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.pkp-modal-point__button {
+    padding: 2px 4px;
+    border: 1px solid $gray-dark;
+    border-radius: 6px;
+}

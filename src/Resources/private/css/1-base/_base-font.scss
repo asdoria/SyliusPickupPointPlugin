@@ -1,0 +1,17 @@
+/*
+ * [ base / font ]
+ */
+
+// -----------------------------------------------------------------------------
+
+
+//
+// ====================================
+@font-face {
+    font-family: 'pkp-icomoon';
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+    src: fontPkp('pkp-icomoon.ttf') format('truetype'),
+    fontPkp('pkp-icomoon.woff') format('woff');
+}

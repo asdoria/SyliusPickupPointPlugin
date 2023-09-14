@@ -1,0 +1,49 @@
+/*
+ * [ components / input ]
+ */
+
+// -----------------------------------------------------------------------------
+
+.pkp-input {
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+.pkp-input--filter {
+    border: 1px solid $gray-dark;
+    margin-right: 8px;
+    padding: 4px;
+
+    @media screen and (max-width: 1024px) {
+        margin-top: 0.5rem;
+    }
+}
+
+.pkp-input--search {
+    padding: 4px 8px;
+    flex: 1 1 0%;
+    background: $gray-base;
+    color: $gray-darkest;
+
+    @media screen and (max-width: 1024px) {
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+}
+
+.pkp-input-validate {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    width: 40px;
+    background: $gray-dark;
+    cursor: auto;
+
+    &--active {
+        background: $primary;
+        color: white;
+        cursor: pointer;
+    }
+}
