@@ -25,7 +25,7 @@ final class ChronoRelayClient extends BaseSoapClient implements RelayClientInter
                 'date' => date('d/m/Y')
             ])));
 
-        return $response->return;
+        return $response->return ?? [];
     }
 
     /**

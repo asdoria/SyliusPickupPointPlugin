@@ -25,7 +25,7 @@ final class MondialRelayClient extends BaseSoapClient implements RelayClientInte
             return [];
         }
 
-        return $response->WSI3_PointRelais_RechercheResult->PointsRelais->PointRelais_Details;
+        return $response->WSI3_PointRelais_RechercheResult->PointsRelais->PointRelais_Details ?? [];
     }
 
     /**

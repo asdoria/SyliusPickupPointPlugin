@@ -25,7 +25,7 @@ final class Shop2ShopRelayClient extends BaseSoapClient implements RelayClientIn
                 'shippingDate' => date('d/m/Y')
             ])));
 
-        return $response->return->listePointRelais;
+        return $response->return->listePointRelais ?? [];
     }
 
     /**

@@ -29,7 +29,7 @@ final class ColissimoRelayClient extends BaseSoapClient implements RelayClientIn
             return [];
         }
 
-        return $response->return->listePointRetraitAcheminement;
+        return $response->return->listePointRetraitAcheminement ?? [];
     }
 
     /**

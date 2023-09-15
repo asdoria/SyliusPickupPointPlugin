@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (!elToTeleportPickupPoint) return
 
-            const instanceAppReact = document.querySelector('.pkp-app')
+            const instanceAppReact = document.querySelector('.pkp-app, .pkp-app-error')
 
             paramsForEventBus.providerCode = e.target.dataset?.pickupPointProvider
             paramsForEventBus.csrfToken    = e.target.dataset?.csrfToken
