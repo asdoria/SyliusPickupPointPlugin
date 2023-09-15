@@ -37,7 +37,7 @@ final class DpdRelayClient extends HttpClient implements RelayClientInterface
             'query' => $this->getOptions($params),
         ]);
 
-        return $this->getResult($response);
+        return $this->getResult($response) ?? [];
     }
 
     /**
