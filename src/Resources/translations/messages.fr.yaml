@@ -17,3 +17,4 @@ asdoria_pickup_point:
         reload_map: "Recharger la map"
         map: "Carte"
         list_shops: "Liste des relais"
+        no_pickup_point_found: "Aucun point relais trouvé"

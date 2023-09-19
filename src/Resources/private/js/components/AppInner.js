@@ -37,13 +37,6 @@ const AppInner = ({ routePath, csrfToken, providerCode, options, defaultPoint })
     }
 
     /**
-     *
-     */
-    const reloadMap = () => {
-        dispatch(fetchPoints({ routePath, csrfToken, providerCode }))
-    }
-
-    /**
      * On component mounted : init states
      */
     useEffect(() => {
@@ -90,24 +83,12 @@ const AppInner = ({ routePath, csrfToken, providerCode, options, defaultPoint })
     /**
      * Render
      */
-    if (getStatusRequest === STATUS_SUCCEEDED) {
+    if (getStatusRequest === STATUS_SUCCEEDED || getStatusRequest === STATUS_FAILED) {
         return (
             <>
                 { isTablet() && <AppInnerMobile/> }
                 { !isTablet() && <AppInnerDesktop/> }
             </>
-        )
-    }
-
-    if (getStatusRequest === STATUS_FAILED) {
-        return (
-            <div className="pkp-app-error"
-                 style={ { height: isTablet() ? getOptions.heightMobile : getOptions.height } }>
-                <p>{ Translator.trans('sylius.ui.error') }</p>
-                <div onClick={ reloadMap } className="pkp-app-error__button">
-                    { Translator.trans('asdoria_pickup_point.ui.reload_map') }
-                </div>
-            </div>
         )
     }
 

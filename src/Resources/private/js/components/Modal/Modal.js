@@ -36,7 +36,7 @@ const Modal = () => {
             <CSSTransition in={ modalOpened } classNames="Animation-translateX" timeout={ 300 } unmountOnExit appear>
                 <div className="pkp-modal">
                     <Filter/>
-                    <ul className="js-pkp-modal-points pkp-modal-points pkp-scrollbar" data-lenis-prevent>
+                    <ul className="js-pkp-modal-points pkp-modal-points pkp-scrollbar" style={{ listStyleType: 'none' }} data-lenis-prevent>
                         { getPointsFiltered.map((point, index) => <ModalPoint key={ index } point={ point }/>) }
                     </ul>
                 </div>

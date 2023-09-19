@@ -17,3 +17,4 @@ asdoria_pickup_point:
         reload_map: "Reload map"
         map: "Map"
         list_shops: "List of pickup points"
+        no_pickup_point_found: "No pickup point found"
