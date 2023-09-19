@@ -25,18 +25,3 @@
 .pkp-map-container {
     z-index: 1;
 }
-
-.pkp-app-error {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: $gray-light;
-}
-
-.pkp-app-error__button {
-    border: 1px solid $gray-dark;
-    padding: 4px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-}
