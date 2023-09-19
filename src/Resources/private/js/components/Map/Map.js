@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leafl
 import MapMarkers from './MapMarkers'
 import MapEvents from './MapEvents'
 import { isTablet } from '../../utils/viewport'
+import { STATUS_SUCCEEDED } from '../../utils/constants'
 
 /**
  *
@@ -11,12 +12,16 @@ import { isTablet } from '../../utils/viewport'
  * @constructor
  */
 const Map = () => {
-    const getCenterLatLng = useSelector(state => state.points.centerLatLng)
-    const getOptions      = useSelector(state => state.main.options)
+    const getStatusRequest = useSelector(state => state.points.status)
+    const getCenterLatLng  = useSelector(state => state.points.centerLatLng)
+    const getOptions       = useSelector(state => state.main.options)
+
+    const centerOfEurope = [47.751569, 1.675063]
+    const zoomForEurope  = 5
 
     return (
-        <MapContainer center={ getCenterLatLng }
-                      zoom={ getOptions.zoom }
+        <MapContainer center={ getStatusRequest === STATUS_SUCCEEDED ? getCenterLatLng : centerOfEurope }
+                      zoom={ getStatusRequest === STATUS_SUCCEEDED ? getOptions.zoom : zoomForEurope }
                       scrollWheelZoom={ getOptions.scrollWheelZoom }
                       zoomControl={ false }
                       style={ { height: isTablet() ? getOptions.heightMobile : getOptions.height } }
