@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 import AppInner from './AppInner'
-import { EVENT_SET_PICKUP_POINT, EVENT_UPDATE_CURRENT_PICKUP_POINT, STATUS_SUCCEEDED } from '../utils/constants'
+import { EVENT_SET_PICKUP_POINT, EVENT_UPDATE_CURRENT_PICKUP_POINT, STATUS_SUCCEEDED, STATUS_FAILED } from '../utils/constants'
 import { setCrsfToken, setOptions, setProviderCode, setRoutePath } from '../store/mainStore'
-import { resetCurrentPoint, setCurrentPoint, setEnableDefaultPoint } from '../store/pointsStore'
+import { resetCurrentPoint, setCurrentPoint, setEnableDefaultPoint, setPoints } from '../store/pointsStore'
 import { setModalOpened } from '../store/modalStore'
 import fetchPoints from '../api/points'
 
@@ -42,6 +42,10 @@ const App = ({ routePath, csrfToken, providerCode, options, defaultPoint, elToTe
 
         if (getStatusRequest === STATUS_SUCCEEDED && enableDefaultPoint) {
             initDefaultPoint()
+        }
+
+        if (getStatusRequest === STATUS_FAILED) {
+            dispatch(setPoints([]))
         }
     }, [getStatusRequest, dispatch])
 
