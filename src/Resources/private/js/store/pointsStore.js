@@ -13,6 +13,7 @@ export const pointsStore = createSlice({
         status: '',
         error: null,
         pointClicked: false,
+        enableDefaultPoint: false,
     },
     reducers: {
         setPoints: (state, { payload: newPoints }) => {
@@ -31,6 +32,9 @@ export const pointsStore = createSlice({
         },
         setPointClicked: (state, { payload: bool }) => {
             state.pointClicked = bool
+        },
+        setEnableDefaultPoint: (state, { payload: bool }) => {
+            state.enableDefaultPoint = bool
         },
     },
     extraReducers (builder) {
@@ -63,6 +67,7 @@ export const {
                  resetCurrentPoint,
                  setPointClicked,
                  setPointsFiltered,
+                 setEnableDefaultPoint,
              } = pointsStore.actions
 
 export default pointsStore.reducer
