@@ -1,28 +1,87 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
-import EventBusVanilla from '../utils/eventBusVanilla'
 import AppInner from './AppInner'
-import { EVENT_SET_PICKUP_POINT } from '../utils/constants'
+import { EVENT_SET_PICKUP_POINT, EVENT_UPDATE_CURRENT_PICKUP_POINT, STATUS_SUCCEEDED } from '../utils/constants'
+import { setCrsfToken, setOptions, setProviderCode, setRoutePath } from '../store/mainStore'
+import { resetCurrentPoint, setCurrentPoint, setEnableDefaultPoint } from '../store/pointsStore'
+import { setModalOpened } from '../store/modalStore'
+import fetchPoints from '../api/points'
 
-const App = (props) => {
+const App = ({ routePath, csrfToken, providerCode, options, defaultPoint, elToTeleport }) => {
     const dispatch = useDispatch()
 
-    const [getElToTeleport, setElTeleported] = useState(props.elToTeleport)
+    const [getElToTeleport, setElTeleported] = useState(elToTeleport)
 
-    EventBusVanilla.addEventListener(EVENT_SET_PICKUP_POINT, ({ detail }) => {
-        if (!detail?.providerCode && !detail?.csrfToken && !detail?.elToTeleport) return
+    const getPoints          = useSelector(state => state.points.points)
+    const getStatusRequest   = useSelector(state => state.points.status)
+    const getCurrentPoint    = useSelector(state => state.points.currentPoint)
+    const enableDefaultPoint = useSelector(state => state.points.enableDefaultPoint)
+    const modalOpened        = useSelector(state => state.modal.modalOpened)
+    const getCrsfToken       = useSelector(state => state.main.csrfToken)
+    const getProviderCode    = useSelector(state => state.main.providerCode)
+    const getOptions         = useSelector(state => state.main.options)
 
-        detail.elToTeleport.style.display = 'block'
+    const initDefaultPoint = () => {
+        const currentPoint = getPoints.find(point => point.code === defaultPoint)
+        if (!currentPoint) return
 
-        setElTeleported(detail.elToTeleport)
-    })
+        dispatch(setCurrentPoint(currentPoint))
+        dispatch(setEnableDefaultPoint(false))
+    }
 
-    if(!getElToTeleport) return
+    /**
+     * Observe status of request.
+     * Fetch points and init default point in one case
+     */
+    useEffect(() => {
+        if (!getStatusRequest) {
+            dispatch(fetchPoints({ routePath, csrfToken, providerCode }))
+            return
+        }
+
+        if (getStatusRequest === STATUS_SUCCEEDED && enableDefaultPoint) {
+            initDefaultPoint()
+        }
+    }, [getStatusRequest, dispatch])
+
+    /**
+     * Observe state of currentPoint.
+     * Dispatch currentPoint.
+     */
+    useEffect(() => {
+        eventBus.dispatchEvent(EVENT_UPDATE_CURRENT_PICKUP_POINT, { ...getCurrentPoint })
+    }, [getCurrentPoint])
+
+    /**
+     * On component mounted : init states
+     */
+    useEffect(() => {
+        dispatch(setOptions(options))
+        dispatch(setRoutePath(routePath))
+        dispatch(setCrsfToken(csrfToken))
+        dispatch(setProviderCode(providerCode))
+
+        eventBus.addEventListener(EVENT_SET_PICKUP_POINT, ({ detail }) => {
+            if (!detail?.providerCode && !detail?.csrfToken && !detail?.elToTeleport) return
+
+            detail.elToTeleport.style.display = 'block'
+
+            setElTeleported(detail.elToTeleport)
+            dispatch(setProviderCode(detail.providerCode))
+            dispatch(setCrsfToken(detail.csrfToken))
+            dispatch(resetCurrentPoint())
+            dispatch(setModalOpened(false))
+            dispatch(fetchPoints({ routePath, csrfToken: detail.csrfToken, providerCode: detail.providerCode }))
+            dispatch(setEnableDefaultPoint(true))
+        })
+    }, [])
+
+    if (!getElToTeleport) return
 
     return (
         <>
-            { createPortal(<AppInner { ...props }/>, getElToTeleport) }
+            { createPortal(<AppInner/>, getElToTeleport) }
         </>
     )
 }
