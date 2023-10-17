@@ -78,14 +78,14 @@ final class ColissimoRelayProvider extends Provider
     {
         $pickupPoints = [];
         $shippingAddress = $order->getShippingAddress();
-
+        $request         = $this->requestStack->getMainRequest();
         if (null === $shippingAddress) {
             return [];
         }
 
         $options = [
             'address'       => $shippingAddress->getStreet(),
-            'zipCode'       => $shippingAddress->getPostcode(),
+            'zipCode'       => $request->get('postCode', $shippingAddress->getPostcode()),
             'city'          => $shippingAddress->getCity(),
             'countryCode'   => $shippingAddress->getCountryCode(),
         ];
