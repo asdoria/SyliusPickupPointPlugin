@@ -289,13 +289,16 @@ export const EVENT_UPDATE_CURRENT_PICKUP_POINT = 'EVENT_UPDATE_CURRENT_PICKUP_PO
 
 6) Create the file `assets/shop/js/app/pickup-point.js`
 
+Note : path of import of EventBusVanilla is about your project
 ```js
 import {
     EVENT_INSTANCE_PICKUP_POINT,
     EVENT_SET_PICKUP_POINT,
     EVENT_HIDE_PICKUP_POINT,
     EVENT_UPDATE_CURRENT_PICKUP_POINT
-} from '../common/constants/events'
+} from './common/constants/events'
+
+import EventBusVanilla from '../../../../vendor/asdoria/sylius-pickup-point-plugin/src/Resources/private/js/utils/eventBusVanilla.js'
 
 document.addEventListener('DOMContentLoaded', async () => {
     const providersWithPickupPoint = [...document.querySelectorAll('input.input-shipping-method[data-pickup-point-provider]')]
@@ -313,7 +316,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         paramsForEventBus.providerCode = providerCheckedByDefault.dataset?.pickupPointProvider
         paramsForEventBus.csrfToken    = providerCheckedByDefault.dataset?.csrfToken
 
-        eventBus.dispatchEvent(EVENT_INSTANCE_PICKUP_POINT, {
+        EventBusVanilla.dispatchEvent(EVENT_INSTANCE_PICKUP_POINT, {
             ...paramsForEventBus,
             elToTeleport: elToTeleportPickupPoint
         })
@@ -331,7 +334,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             paramsForEventBus.csrfToken    = e.target.dataset?.csrfToken
 
             if (instanceAppReact) {
-                eventBus.dispatchEvent(EVENT_SET_PICKUP_POINT, {
+                EventBusVanilla.dispatchEvent(EVENT_SET_PICKUP_POINT, {
                     ...paramsForEventBus,
                     elToTeleport: elToTeleportPickupPoint
                 })
@@ -339,7 +342,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return
             }
 
-            eventBus.dispatchEvent(EVENT_INSTANCE_PICKUP_POINT, {
+            EventBusVanilla.dispatchEvent(EVENT_INSTANCE_PICKUP_POINT, {
                 ...paramsForEventBus,
                 elToTeleport: elToTeleportPickupPoint
             })
@@ -350,7 +353,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     providersWithoutPickupPoint.forEach(providerWithoutPickupPoint => {
         providerWithoutPickupPoint.addEventListener('change', (e) => {
-            eventBus.dispatchEvent(EVENT_HIDE_PICKUP_POINT)
+            EventBusVanilla.dispatchEvent(EVENT_HIDE_PICKUP_POINT)
         })
     })
 
@@ -375,13 +378,13 @@ const getElToTeleportPickupPoint = (inputRadio) => {
 }
 
 const updateCurrentPoint = () => {
-    const elInstance  = document.querySelector('.react-pickup-point')
+    const elInstance = document.querySelector('.react-pickup-point')
     const inputHidden = document.querySelector('.react-pickup-point-input-hidden')
 
     if (!elInstance || !inputHidden) return
 
-    eventBus.addEventListener(EVENT_UPDATE_CURRENT_PICKUP_POINT, ({ detail: getCurrentPoint }) => {
-        inputHidden.value = getCurrentPoint?.code || null
+    EventBusVanilla.addEventListener(EVENT_UPDATE_CURRENT_PICKUP_POINT, ({ detail: getCurrentPoint }) => {
+        inputHidden.value = getCurrentPoint.code
     })
 }
 ```
@@ -390,6 +393,8 @@ const updateCurrentPoint = () => {
    in `templates/bundles/SyliusShopBundle/Checkout/SelectShipping/_choice.html.twig`
    put class `react-parent-teleport-pickup-point` in choice container, and class `react-teleport-pickup-point` in a
    child `<div>` of this container.
+
+8) Create a twig **empty** file to override SetonoSyliusPickupPointPlugin : `templates/bundles/SetonoSyliusPickupPointPlugin/_javascripts.html.twig`
 
 ```html
 {% import '@SyliusShop/Macro/images.html.twig' as Image %}
