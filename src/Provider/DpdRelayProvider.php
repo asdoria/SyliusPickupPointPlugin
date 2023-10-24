@@ -70,14 +70,14 @@ final class DpdRelayProvider extends Provider
     {
         $pickupPoints = [];
         $shippingAddress = $order->getShippingAddress();
-
+        $request         = $this->requestStack->getMainRequest();
         if (null === $shippingAddress) {
             return [];
         }
 
         $options = [
             'countryCode'         => $shippingAddress->getCountryCode(),
-            'zipCode'             => $shippingAddress->getPostcode(),
+            'zipCode'             => $request->get('postCode', $shippingAddress->getPostcode()),
             'city'                => $shippingAddress->getCity(),
             'requestID'           => $shippingAddress->getId(),
             'date_from'           => (new \DateTime('+1 day'))->format('d/m/Y'),
