@@ -7,6 +7,7 @@ import { setCrsfToken, setOptions, setProviderCode, setRoutePath } from '../stor
 import { resetCurrentPoint, setCurrentPoint, setEnableDefaultPoint, setPoints } from '../store/pointsStore'
 import { setModalOpened } from '../store/modalStore'
 import fetchPoints from '../api/points'
+import EventBusVanilla from '../utils/eventBusVanilla'
 
 const App = ({ routePath, csrfToken, providerCode, options, defaultPoint, elToTeleport }) => {
     const dispatch = useDispatch()
@@ -54,7 +55,7 @@ const App = ({ routePath, csrfToken, providerCode, options, defaultPoint, elToTe
      * Dispatch currentPoint.
      */
     useEffect(() => {
-        eventBus.dispatchEvent(EVENT_UPDATE_CURRENT_PICKUP_POINT, { ...getCurrentPoint })
+        EventBusVanilla.dispatchEvent(EVENT_UPDATE_CURRENT_PICKUP_POINT, { ...getCurrentPoint })
     }, [getCurrentPoint])
 
     /**
@@ -66,7 +67,7 @@ const App = ({ routePath, csrfToken, providerCode, options, defaultPoint, elToTe
         dispatch(setCrsfToken(csrfToken))
         dispatch(setProviderCode(providerCode))
 
-        eventBus.addEventListener(EVENT_SET_PICKUP_POINT, ({ detail }) => {
+        EventBusVanilla.addEventListener(EVENT_SET_PICKUP_POINT, ({ detail }) => {
             if (!detail?.providerCode && !detail?.csrfToken && !detail?.elToTeleport) return
 
             detail.elToTeleport.style.display = 'block'
