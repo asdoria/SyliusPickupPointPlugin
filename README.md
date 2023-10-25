@@ -278,28 +278,9 @@ To: [shop_dir] templates/bundles/SyliusAdminBundle/*
 {% endblock %}
 ```
 
-5) In `assets/shop/js/common/constants/events.js`, export constants
+5) Create the file `assets/shop/js/app/pickup-point.js`
 
 ```js
-export const EVENT_INSTANCE_PICKUP_POINT       = 'EVENT_INSTANCE_PICKUP_POINT'
-export const EVENT_SET_PICKUP_POINT            = 'EVENT_SET_PICKUP_POINT'
-export const EVENT_HIDE_PICKUP_POINT           = 'EVENT_HIDE_PICKUP_POINT'
-export const EVENT_UPDATE_CURRENT_PICKUP_POINT = 'EVENT_UPDATE_CURRENT_PICKUP_POINT'
-```
-
-6) Create the file `assets/shop/js/app/pickup-point.js`
-
-Note : path of import of EventBusVanilla is about your project
-```js
-import {
-    EVENT_INSTANCE_PICKUP_POINT,
-    EVENT_SET_PICKUP_POINT,
-    EVENT_HIDE_PICKUP_POINT,
-    EVENT_UPDATE_CURRENT_PICKUP_POINT
-} from './common/constants/events'
-
-import EventBusVanilla from '../../../../vendor/asdoria/sylius-pickup-point-plugin/src/Resources/private/js/utils/eventBusVanilla.js'
-
 document.addEventListener('DOMContentLoaded', async () => {
     const providersWithPickupPoint = [...document.querySelectorAll('input.input-shipping-method[data-pickup-point-provider]')]
     if (!providersWithPickupPoint.length) return
@@ -316,7 +297,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         paramsForEventBus.providerCode = providerCheckedByDefault.dataset?.pickupPointProvider
         paramsForEventBus.csrfToken    = providerCheckedByDefault.dataset?.csrfToken
 
-        EventBusVanilla.dispatchEvent(EVENT_INSTANCE_PICKUP_POINT, {
+        window.asdoriaPickupEventBus.dispatchEvent('EVENT_INSTANCE_PICKUP_POINT', {
             ...paramsForEventBus,
             elToTeleport: elToTeleportPickupPoint
         })
@@ -334,7 +315,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             paramsForEventBus.csrfToken    = e.target.dataset?.csrfToken
 
             if (instanceAppReact) {
-                EventBusVanilla.dispatchEvent(EVENT_SET_PICKUP_POINT, {
+                window.asdoriaPickupEventBus.dispatchEvent('EVENT_SET_PICKUP_POINT', {
                     ...paramsForEventBus,
                     elToTeleport: elToTeleportPickupPoint
                 })
@@ -342,7 +323,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return
             }
 
-            EventBusVanilla.dispatchEvent(EVENT_INSTANCE_PICKUP_POINT, {
+            window.asdoriaPickupEventBus.dispatchEvent('EVENT_INSTANCE_PICKUP_POINT', {
                 ...paramsForEventBus,
                 elToTeleport: elToTeleportPickupPoint
             })
@@ -353,7 +334,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     providersWithoutPickupPoint.forEach(providerWithoutPickupPoint => {
         providerWithoutPickupPoint.addEventListener('change', (e) => {
-            EventBusVanilla.dispatchEvent(EVENT_HIDE_PICKUP_POINT)
+            window.asdoriaPickupEventBus.dispatchEvent('EVENT_HIDE_PICKUP_POINT')
         })
     })
 
@@ -383,18 +364,18 @@ const updateCurrentPoint = () => {
 
     if (!elInstance || !inputHidden) return
 
-    EventBusVanilla.addEventListener(EVENT_UPDATE_CURRENT_PICKUP_POINT, ({ detail: getCurrentPoint }) => {
+    window.asdoriaPickupEventBus.addEventListener('EVENT_UPDATE_CURRENT_PICKUP_POINT', ({ detail: getCurrentPoint }) => {
         inputHidden.value = getCurrentPoint.code
     })
 }
 ```
 
-7) Map will teleport in current choice of provider. To do it,
+6) Map will teleport in current choice of provider. To do it,
    in `templates/bundles/SyliusShopBundle/Checkout/SelectShipping/_choice.html.twig`
    put class `react-parent-teleport-pickup-point` in choice container, and class `react-teleport-pickup-point` in a
    child `<div>` of this container.
 
-8) Create a twig **empty** file to override SetonoSyliusPickupPointPlugin : `templates/bundles/SetonoSyliusPickupPointPlugin/_javascripts.html.twig`
+7) Create a twig **empty** file to override SetonoSyliusPickupPointPlugin : `templates/bundles/SetonoSyliusPickupPointPlugin/_javascripts.html.twig`
 
 ```html
 {% import '@SyliusShop/Macro/images.html.twig' as Image %}
