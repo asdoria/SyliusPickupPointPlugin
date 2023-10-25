@@ -32,8 +32,8 @@ class EventBus {
     }
 }
 
-if (!window.eventBus) {
-    window.eventBus = new EventBus();
+if (!window.asdoriaPickupEventBus) {
+    window.asdoriaPickupEventBus = new EventBus();
 }
 
-export default window.eventBus;
+export default window.asdoriaPickupEventBus;

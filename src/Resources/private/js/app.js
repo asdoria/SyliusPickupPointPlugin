@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import store from './store'
 import App from './components/App'
-import EventBusVanilla from './utils/eventBusVanilla'
+import './utils/eventBusVanilla'
 import { EVENT_INSTANCE_PICKUP_POINT, EVENT_HIDE_PICKUP_POINT } from './utils/constants'
 import axios from 'axios'
 import 'intl-messageformat'
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!el || !inputHidden || !el.dataset?.pkpLocale) return
     loadTranslations(el.dataset.pkpLocale)
 
-    EventBusVanilla.addEventListener(EVENT_INSTANCE_PICKUP_POINT, ({ detail }) => {
+    window.asdoriaPickupEventBus.addEventListener(EVENT_INSTANCE_PICKUP_POINT, ({ detail }) => {
         if (!detail?.providerCode || !detail?.csrfToken || !detail?.elToTeleport) return
 
         el.style.display = 'block'
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         )
     })
 
-    EventBusVanilla.addEventListener(EVENT_HIDE_PICKUP_POINT, () => {
+    window.asdoriaPickupEventBus.addEventListener(EVENT_HIDE_PICKUP_POINT, () => {
         const elsTeleportable = [...document.querySelectorAll('.react-teleport-pickup-point')]
 
         elsTeleportable.forEach(elTeleportable => {
