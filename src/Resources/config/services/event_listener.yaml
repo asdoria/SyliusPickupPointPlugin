@@ -15,5 +15,6 @@ services:
     tags:
       - { name: kernel.event_listener, event: sylius.order.pre_complete, method: addShippingAddress }
 
-  setono_sylius_pickup_point.block_event_listener.javascript:
-        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+  asdoria_sylius_pickup_point_plugin.block_event_listener.javascript:
+        decorates: setono_sylius_pickup_point.block_event_listener.javascript
+        class: Asdoria\SyliusPickupPointPlugin\EventListener\BlockEventListener
