@@ -375,8 +375,6 @@ const updateCurrentPoint = () => {
    put class `react-parent-teleport-pickup-point` in choice container, and class `react-teleport-pickup-point` in a
    child `<div>` of this container.
 
-7) Create a twig **empty** file to override SetonoSyliusPickupPointPlugin : `templates/bundles/SetonoSyliusPickupPointPlugin/_javascripts.html.twig`
-
 ```html
 {% import '@SyliusShop/Macro/images.html.twig' as Image %}
 {% import '@SyliusShop/Common/Macro/money.html.twig' as money %}
