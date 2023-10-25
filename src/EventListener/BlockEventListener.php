@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Asdoria\SyliusPickupPointPlugin\EventListener;
 
+use Sonata\BlockBundle\Event\BlockEvent;
 use Sylius\Bundle\UiBundle\Block\BlockEventListener as BaseBlockEventListener;
 use Sonata\BlockBundle\Model\Block;
 
