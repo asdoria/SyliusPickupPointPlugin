@@ -390,6 +390,15 @@ const updateCurrentPoint = () => {
 </div>
 ```
 
+7) Create file `config/routes/js_translation.yaml`
+```yaml
+bazinga_js_translation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"
+    prefix: /{_locale}
+    requirements:
+        _locale: ^[A-Za-z]{2,4}(_([A-Za-z]{4}|[0-9]{3}))?(_([A-Za-z]{2}|[0-9]{3}))?$
+```
+
 ### 2/ Options
 
 |          Data attribute          |            Value             |         Explication         |                         Default Value                          |
