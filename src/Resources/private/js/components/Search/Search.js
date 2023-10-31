@@ -19,7 +19,7 @@ const Search = () => {
         dispatch(setSearchValue(event.target.value))
     }
 
-    const validateHandler = (event) => {
+    const validateHandler = () => {
         if (!searchValue) return
 
         dispatch(setPostCode(searchValue))
@@ -34,6 +34,22 @@ const Search = () => {
         dispatch(setSearchValue(''))
     }
 
+    const keyDownHandler = (event) => {
+        if (event.key !== 'Enter') return
+
+        event.preventDefault()
+
+        const forms = document.querySelectorAll('form')
+
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault()
+            })
+        })
+
+        validateHandler()
+    }
+
     return (
         <div className="pkp-input pkp-input--search"
              style={ { display: 'flex', flexWrap: 'wrap', alignItems: 'center' } }>
@@ -42,9 +58,10 @@ const Search = () => {
                    className=""
                    style={ { flex: '1 1 0%', background: 'transparent' } }
                    placeholder={ Translator.trans('asdoria_pickup_point.ui.search') }
+                   onKeyDown={ keyDownHandler }
                    onChange={ changeHandler }/>
             <div onClick={ validateHandler }
-                    className={ 'pkp-input-validate' + (searchValue ? ' pkp-input-validate--active' : '') }>
+                 className={ 'pkp-input-validate' + ( searchValue ? ' pkp-input-validate--active' : '' ) }>
                 OK
             </div>
         </div>
